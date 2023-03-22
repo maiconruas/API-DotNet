@@ -13,6 +13,7 @@ namespace ApiDotNet.Domain.Entities
 		public Person(string name, string document, string phone)
 		{
 			Validation(document, name, phone);
+			Purchases = new List<Purchase>();
 		}
 
 		public Person(int id, string name, string document, string phone)
@@ -20,6 +21,7 @@ namespace ApiDotNet.Domain.Entities
 			DomainValidationException.When(id < 0, "O ID deve exitir");
 			Id = id;
 			Validation(document, name, phone);
+			Purchases = new List<Purchase>();
 		}
 
 		private void Validation(String document,  string phone, string name) 

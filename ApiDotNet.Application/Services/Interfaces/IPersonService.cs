@@ -2,7 +2,7 @@
 
 namespace ApiDotNet.Application.Services.Interfaces
 {
-	internal interface IPersonService
+	public interface IPersonService
 	{
 		Task<ResultService<PersonDTO>> CreateAsync(PersonDTO personDTO);
 	}

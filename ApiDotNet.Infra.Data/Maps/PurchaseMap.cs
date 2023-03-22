@@ -13,14 +13,14 @@ namespace ApiDotNet.Infra.Data.Maps
 			builder.HasKey(_ => _.Id);
 
 			builder.Property(_ => _.Id)
-				.HasColumnName("IdCompra")
+				.HasColumnName("Idcompra")
 				.UseIdentityColumn();
 
 			builder.Property(_ => _.PersonId)
-				.HasColumnName("IdPessoa");
+				.HasColumnName("Idpessoa");
 
 			builder.Property(_ => _.ProductId)
-				.HasColumnName("IdProduto");
+				.HasColumnName("Idproduto");
 
 			builder.Property(_ => _.Date)
 				.HasColumnName("DataCompra");
