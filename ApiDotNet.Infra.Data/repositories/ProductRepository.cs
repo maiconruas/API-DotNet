@@ -16,7 +16,7 @@ namespace ApiDotNet.Infra.Data.repositories
 
 		public async Task<Product> CreateAsync(Product product)
 		{
-			_dbContext.SaveChanges();
+			_dbContext.Add(product);
 			await _dbContext.SaveChangesAsync();	
 			return product;
 		}
@@ -32,7 +32,7 @@ namespace ApiDotNet.Infra.Data.repositories
 			return await _dbContext.Products.FirstOrDefaultAsync(_ => _.Id == id);
 		}
 
-		public async Task<ICollection<Product>> GetPeopleAsync()
+		public async Task<ICollection<Product>> GetProductsAsync()
 		{
 			return await _dbContext.Products.ToListAsync();
 		}

@@ -23,7 +23,7 @@ namespace ApiDotNet.Infra.Data.Maps
 				.HasColumnName("coderp");
 
 			builder.Property(_ => _.Price)
-				.HasColumnName("preço");
+				.HasColumnName("preÇo");
 
 			builder.HasMany(_ => _.Purchases)
 				.WithOne(_ => _.Product)
