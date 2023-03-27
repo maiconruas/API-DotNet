@@ -32,5 +32,12 @@ namespace ApiDotNet.Domain.Entities
 			PersonId = personId;
 			Date = DateTime.Now;
 		}
+
+		public void Edit(int id, int productId, int personId)
+		{
+			DomainValidationException.When(id <= 0, "Id deve ser informado!");
+			Id = id;
+			Validation(productId, personId);
+		}
 	}
 }
