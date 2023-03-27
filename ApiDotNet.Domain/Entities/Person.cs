@@ -4,31 +4,31 @@ namespace ApiDotNet.Domain.Entities
 {
 	public sealed class Person
 	{
-        public int Id { get; private set; }
-		public string Name { get; private set; }	
+		public int Id { get; private set; }
 		public string Document { get; private set; }
+		public string Name { get; private set; }
 		public string Phone { get; private set; }
 		public ICollection<Purchase> Purchases { get; private set; }
 
-		public Person(string name, string document, string phone)
+		public Person(string document, string name, string phone)
 		{
 			Validation(document, name, phone);
 			Purchases = new List<Purchase>();
 		}
 
-		public Person(int id, string name, string document, string phone)
+		public Person(int id, string document, string name, string phone)
 		{
-			DomainValidationException.When(id < 0, "O ID deve exitir");
+			DomainValidationException.When(id < 0, "Id invalido");
 			Id = id;
 			Validation(document, name, phone);
 			Purchases = new List<Purchase>();
 		}
 
-		private void Validation(String document,  string phone, string name) 
+		private void Validation(string document, string name, string phone)
 		{
-			DomainValidationException.When(string.IsNullOrEmpty(name), "Nome deve ser informado!");
 			DomainValidationException.When(string.IsNullOrEmpty(document), "Documento deve ser informado!");
-			DomainValidationException.When(string.IsNullOrEmpty(phone), "Celular deve ser informado!");
+			DomainValidationException.When(string.IsNullOrEmpty(name), "Nome deve ser informado!");
+			DomainValidationException.When(string.IsNullOrEmpty(phone), "Phone deve ser informado!");
 
 			Name = name;
 			Document = document;

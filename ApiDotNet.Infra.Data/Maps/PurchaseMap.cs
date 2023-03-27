@@ -8,22 +8,22 @@ namespace ApiDotNet.Infra.Data.Maps
 	{
 		public void Configure(EntityTypeBuilder<Purchase> builder)
 		{
-			builder.ToTable("Compra");
+			builder.ToTable("compra");
 
 			builder.HasKey(_ => _.Id);
 
 			builder.Property(_ => _.Id)
-				.HasColumnName("Idcompra")
+				.HasColumnName("idcompra")
 				.UseIdentityColumn();
 
 			builder.Property(_ => _.PersonId)
-				.HasColumnName("Idpessoa");
+				.HasColumnName("idpessoa");
 
 			builder.Property(_ => _.ProductId)
-				.HasColumnName("Idproduto");
+				.HasColumnName("idproduto");
 
 			builder.Property(_ => _.Date)
-				.HasColumnName("DataCompra");
+				.HasColumnName("datacompra");
 
 			builder.HasOne(_ => _.Person)
 				.WithMany(_ => _.Purchases);

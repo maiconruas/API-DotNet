@@ -1,5 +1,6 @@
 ﻿using ApiDotNet.Domain.Entities;
 using ApiDotNet.Infra.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiDotNet.Infra.Data.repositories
 {

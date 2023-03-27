@@ -6,20 +6,20 @@ namespace ApiDotNet.Application.DTOs.Validation
 	{
 		public PersonDTOValidation()
 		{
-			RuleFor(_ => _.Document)
+			RuleFor(x => x.Document)
 				.NotEmpty()
 				.NotNull()
-				.WithMessage("Documento deve ser informado");
+				.WithMessage("Document deve ser informado!");
 
-			RuleFor(_ => _.Name)
+			RuleFor(x => x.Name)
 				.NotEmpty()
 				.NotNull()
-				.WithMessage("Nome deve ser informado");
+				.WithMessage("Name deve ser informado!");
 
-			RuleFor(_ => _.Phone)
+			RuleFor(x => x.Phone)
 				.NotEmpty()
 				.NotNull()
-				.WithMessage("Celular deve ser informado");
+				.WithMessage("Phone deve ser informado!");
 		}
 	}
 }

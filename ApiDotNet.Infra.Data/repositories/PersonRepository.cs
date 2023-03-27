@@ -15,7 +15,7 @@ namespace ApiDotNet.Infra.Data.repositories
 
 		public async Task<Person> CreateAsync(Person person)
 		{
-			_context.SaveChanges();
+			_context.Add(person);
 			await _context.SaveChangesAsync();
 			return person;
 		}

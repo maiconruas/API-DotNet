@@ -4,7 +4,7 @@ namespace ApiDotNet.Application.Services
 {
 	public class ResultService
 	{
-        public  bool IsSuccess { get; set; }
+		public bool IsSuccess { get; private set; } = true;
 		public string Message { get; set; }
 		public ICollection<ErrorValidation> Errors { get; set; }
 
@@ -14,7 +14,7 @@ namespace ApiDotNet.Application.Services
 			{
 				IsSuccess = false,
 				Message = message,
-				Errors = validationResult.Errors.Select(_ => new ErrorValidation { Field = _.PropertyName, Message = _.ErrorMessage }).ToList()
+				Errors = validationResult.Errors.Select(x => new ErrorValidation { Field = x.PropertyName, Message = x.ErrorMessage }).ToList()
 			};
 		}
 
@@ -24,20 +24,19 @@ namespace ApiDotNet.Application.Services
 			{
 				IsSuccess = false,
 				Message = message,
-				Errors = validationResult.Errors.Select(_ => new ErrorValidation { Field = _.PropertyName, Message = _.ErrorMessage }).ToList()
+				Errors = validationResult.Errors.Select(x => new ErrorValidation { Field = x.PropertyName, Message = x.ErrorMessage }).ToList()
 			};
 		}
 
 		public static ResultService Fail(string message) => new ResultService { IsSuccess = false, Message = message };
 		public static ResultService<T> Fail<T>(string message) => new ResultService<T> { IsSuccess = false, Message = message };
 
-		public static ResultService Ok(string message) => new ResultService { IsSuccess = true, Message = message };
-		public static ResultService<T> Ok<T>(T data) => new ResultService<T> { IsSuccess = true, Data = data };
+		public static ResultService Ok(string message) => new ResultService { Message = message, IsSuccess = true };
+		public static ResultService<T> Ok<T>(T data) => new ResultService<T> { Data = data, IsSuccess = true };
 	}
-		
-	public class ResultService<T> : ResultService 
-	{
-        public T Data { get; set; }
-    }
 
+	public class ResultService<T> : ResultService
+	{
+		public T Data { get; set; }
+	}
 }
