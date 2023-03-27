@@ -41,5 +41,10 @@ namespace ApiDotNet.Infra.Data.repositories
 			_context.Update(person);
 			await _context.SaveChangesAsync();
 		}
+
+		public async Task<int> GetIdByDocumentAsync(string document)
+		{
+			return (await _context.People.FirstOrDefaultAsync(x => x.Document == document))?.Id ?? 0;
+		}
 	}
 }

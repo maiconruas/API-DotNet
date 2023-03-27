@@ -1,6 +1,7 @@
 ﻿using ApiDotNet.Domain.Entities;
 using ApiDotNet.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using ApiDotNet.Domain.Repositories;
 
 namespace ApiDotNet.Infra.Data.repositories
 {
@@ -70,7 +71,4 @@ namespace ApiDotNet.Infra.Data.repositories
 		}
 	}
 
-	public interface IPurchaseRepository
-	{
-	}
 }

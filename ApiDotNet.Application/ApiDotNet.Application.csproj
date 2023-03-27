@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ApiDotNet.Domain\ApiDotNet.Domain.csproj" />
+    <ProjectReference Include="..\ApiDotNet.Infra.Data\ApiDotNet.Infra.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>

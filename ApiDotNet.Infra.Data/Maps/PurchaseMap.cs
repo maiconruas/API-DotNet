@@ -23,6 +23,7 @@ namespace ApiDotNet.Infra.Data.Maps
 				.HasColumnName("idproduto");
 
 			builder.Property(_ => _.Date)
+				.HasColumnType("date")
 				.HasColumnName("datacompra");
 
 			builder.HasOne(_ => _.Person)

@@ -42,5 +42,10 @@ namespace ApiDotNet.Infra.Data.repositories
 			_dbContext.Update(product);
 			await _dbContext.SaveChangesAsync();
 		}
+
+		public async Task<int> GetIdByCodErpAsync(string codErp)
+		{
+			return (await _dbContext.Products.FirstOrDefaultAsync(x => x.CodErp == codErp))?.Id ?? 0;
+		}
 	}
 }
