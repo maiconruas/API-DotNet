@@ -1,5 +1,6 @@
 ﻿using ApiDotNet.Application.DTOs;
 using ApiDotNet.Application.Services.Interfaces;
+using ApiDotNet.Domain.FiltersDb;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -63,6 +64,17 @@ namespace ApiDotNet.Api.Controllers
 		public async Task<IActionResult> DeleteAsync(int id)
 		{
 			var result = await _personService.RemoveAsync(id);
+			if (result.IsSuccess)
+				return Ok(result);
+
+			return BadRequest(result);
+		}
+
+		[HttpGet]
+		[Route("paged")]
+		public async Task<IActionResult> GetPagedAsync([FromQuery] PersonFilterDb personFilterDb)
+		{
+			var result = await _personService.GetPagedAsync(personFilterDb);
 			if (result.IsSuccess)
 				return Ok(result);
 

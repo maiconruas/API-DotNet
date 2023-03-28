@@ -1,4 +1,5 @@
 ﻿using ApiDotNet.Domain.Entities;
+using ApiDotNet.Domain.FiltersDb;
 using ApiDotNet.Domain.Repositories;
 using ApiDotNet.Infra.Data.Context;
 using Microsoft.EntityFrameworkCore;
@@ -45,6 +46,16 @@ namespace ApiDotNet.Infra.Data.repositories
 		public async Task<int> GetIdByDocumentAsync(string document)
 		{
 			return (await _context.People.FirstOrDefaultAsync(x => x.Document == document))?.Id ?? 0;
+		}
+
+		async Task<PagedBaseResponse<Person>> IPersonRepository.GetPagedAsync(PersonFilterDb request)
+		{
+			var people = _context.People.AsQueryable();
+			if(!string.IsNullOrEmpty(request.Name))
+				people = people.Where(_ => _.Name.Contains(request.Name));
+
+			return await PagedBaseResponseHelper
+						.GetResponseAsync<PagedBaseResponse<Person>,Person>(people, request);
 		}
 	}
 }
